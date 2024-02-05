@@ -23,11 +23,10 @@ This is a simple script for your server. This is easy to use.
     if isvip == true then
       --Your code if the user is a vip
     else
-      if not
+      --if not
     end
   end, callback)
   ```
 
 # ❤️ THANKS ❤️
 - thanks to GC who gave me the idea and the motivation for this script
-- 
