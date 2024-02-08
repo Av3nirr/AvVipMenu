@@ -7,12 +7,11 @@ description 'Vip menu for FiveM compatible with esx_skin.'
 author 'Av3nirr'
 
 client_scripts {
-    "menu.lua",
-    "cl_main.lua",
+    "client/*",
 }
 
 server_scripts {
-    "sv_main.lua",
+    "server/*",
     '@mysql-async/lib/MySQL.lua',
 }
 

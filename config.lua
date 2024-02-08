@@ -30,7 +30,13 @@ Config.Strings = {
     CAR_MENU_BUTONN_WASH_DESCRIPTION = 'Enlever la saleté présente dans votre véhicule',
     WAIT_BEFORE_WASH_AGAIN = '~r~Vous devez encore attendre avant de netooyer à nouveau votre véhicule !',
     VEHICLE_WASHED = "~g~Votre véhicule à été nettoyé !",
-    YOU_ARE_NOT_VIP = "Vous n'êtes pas VIP"
+    YOU_ARE_NOT_VIP = "Vous n'êtes pas VIP",
+    YOU_HAVE_NO_EQUIPED_WEAPON= '~r~Vous n\'avez pas d\'arme équipée !',
+    YOU_CHOOSED_TINT = 'Vous avez choisi le skin %s',
+    --ADMINS COMMANDS
+    YOU_GAVE_VIP = '~g~Vous avez donné un accès VIP illimité à l\'id boutique: %s',
+    YOU_REMOVED_VIP = "~r~Vous avez révoqué un accès VIP illimité à l'id boutique: %s"
+
 }
 Config.labelColors = {"Rouge", "Vert", "Jaune", "Bleu", "Violet"}
 Config.RGBcoulours = {
@@ -61,6 +67,7 @@ Config.RGBcoulours = {
     },
 }
 
+--Here are the allowed ped model for the ped menu
 Config.autorisedPedModels = {
     "a_f_m_beach_01",
     "a_f_m_bevhills_01",
@@ -128,5 +135,24 @@ Config.advancedNotify = function(text, title, subject, icon, timeout, progress)
     })
 end
 
+Config.subventionAccount = 'bank'
 Config.subventionAmount = 200 --argent donné en banque !
 Config.subventionDelay = 30 -- en minutes
+
+Config.getPlayerBoutiqueId = function(playerId)
+    local xPlayer = ESX.GetPlayerFromId(playerId)
+    if xPlayer ~= nil then 
+        local identifier = xPlayer.getIdentifier()
+        local response = MySQL.query.await('SELECT `boutiqueId` FROM `users` WHERE `identifier` = ?', {
+            identifier
+        })
+        if response then
+            for i = 1, #response do
+                local row = response[i]
+                return row.boutiqueId
+            end
+        else
+            return nil
+        end
+    end
+end
