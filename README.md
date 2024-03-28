@@ -25,7 +25,7 @@ This is a simple script for your server. This is easy to use.
     else
       --if not
     end
-  end, callback)
+  end, playerId (the id of the player))
   ```
 
 # ❤️ THANKS ❤️
